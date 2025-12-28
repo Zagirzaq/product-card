@@ -107,3 +107,14 @@
   margin-right: 217px;
   margin-bottom: 110px;
 }
+
+#click-color-button {
+  background-color: #6B8E23;
+  color: white;
+}
+
+
+#click-color-button.color-button-khaki {
+  background-color: #F0E68C; 
+  color: #333;
+}
