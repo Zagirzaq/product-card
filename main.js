@@ -2,16 +2,16 @@ const oliveColor = '#6B8E23';
 const khakiColor = '#F0E68C';
 
 // Покраска первой карточки
-const firstProductCard = document.querySelector('.card-container');
-const changeButtonFirstCardColor = document.querySelector('#button-first-card-color');
+const productFirstCard = document.querySelector('.card-container');
+const buttonChangeFirstCardColor = document.querySelector('#first-card-color');
 
-changeButtonFirstCardColor.addEventListener('click', () => {
-  firstProductCard.style.backgroundColor = khakiColor;
+buttonChangeFirstCardColor.addEventListener('click', () => {
+  productFirstCard.style.backgroundColor = khakiColor;
 })
 
 // Покраска всех карточек
 const productCards = document.querySelectorAll('.card-container');
-const changeButtonAllCardColor = document.querySelector('#button-change-all-cards-color');
+const changeButtonAllCardColor = document.querySelector('#all-cards-color');
 
 changeButtonAllCardColor.addEventListener('click', () => {
   productCards.forEach((card) => card.style.backgroundColor = oliveColor);
@@ -19,11 +19,11 @@ changeButtonAllCardColor.addEventListener('click', () => {
 
 // Открывает Google
 
-const openGoogleButton = document.querySelector('#button-open-google-confirm');
+const buttonOpenGoogle = document.querySelector('#open-google');
 
-openGoogleButton.addEventListener('click', openGoogl)
+buttonOpenGoogle.addEventListener('click', openGoogle)
 
-function openGoogl() {
+function openGoogle() {
   const answerConfirm = confirm('Вы действительно хотите открыть Google?');
   
   if (answerConfirm === true) {
@@ -35,10 +35,10 @@ function openGoogl() {
 
 // Вывод консоль лог и алерт
 
-const outputButtonLogAndAlert = document.querySelector('#button-log-and-alert');
-outputButtonLogAndAlert.addEventListener('click', () => outputLogAndAlert('Homework №4'))
+const outputButtonLogAlert = document.querySelector('#log-alert');
+outputButtonLogAlert.addEventListener('click', () => outputLogAlert('Homework №4'))
 
-function outputLogAndAlert(message) {
+function outputLogAlert(message) {
   alert(message);
   console.log(message);
 }
@@ -47,9 +47,9 @@ function outputLogAndAlert(message) {
 //("Выбери свой продукт") - он выводился в консоль. 
 //(контент элемента, а не произвольный текст, написанный от руки)
 
-const titleList = document.querySelector('.title-list');
-titleList.addEventListener('mouseover', () => {
-  console.log(titleList.textContent);
+const listTitle = document.querySelector('.list-title');
+listTitle.addEventListener('mouseover', () => {
+  console.log(listTitle.textContent);
 })
 
 
@@ -58,8 +58,8 @@ titleList.addEventListener('mouseover', () => {
 //Цвета выбираем по желанию. (Для этого советую использовать .classList)
 
 
-const buttonColor = document.querySelector('#click-color-button');
+const buttonColor = document.querySelector('#button-color');
 
 buttonColor.addEventListener('click', () => {
-  buttonColor.classList.toggle('color-button-khaki');
+  buttonColor.classList.toggle('color-khaki');
 });

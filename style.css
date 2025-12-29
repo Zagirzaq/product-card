@@ -97,7 +97,7 @@
   background-position: 85px top;
 }
 
-.title-list {
+.list-title {
   width: 846px;
   height: 78px;
   font-size: 70px;
@@ -108,13 +108,12 @@
   margin-bottom: 110px;
 }
 
-#click-color-button {
+#button-color {
   background-color: #6B8E23;
   color: white;
 }
 
-
-#click-color-button.color-button-khaki {
+#button-color.color-khaki {
   background-color: #F0E68C; 
   color: #333;
 }
