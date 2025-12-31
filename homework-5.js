@@ -2,11 +2,11 @@
 // город и температуру и выводит сообщение в консоль 
 // "Сейчас в X температура  — Y градусов по Цельсию"
 
-function showWeather(city = 'Симферополь', temp = -4) {
+function showCityTemperature(city = 'Симферополь', temp = -4) {
   console.log(`Сейчас в ${city} температура  — ${temp} градусов по Цельсию`);
 }
 
-showWeather("Москве", -12)
+showCityTemperature("Москве", -12)
 
 // 2. Создать переменную, которая хранит внутри себя скорость света (гуглим). 
 // Создать функцию, которая принимает 1 аргумент - скорость, 
@@ -16,7 +16,7 @@ showWeather("Москве", -12)
 
 const LIGHT_SPEED = 299792458;
 let result;
-function checkSpeed(namber) {
+function compareLightSpeed(namber) {
   if (namber > LIGHT_SPEED) {
     result = 'Сверхсветовая скорость';
   } else if (namber < LIGHT_SPEED) {
@@ -27,7 +27,7 @@ function checkSpeed(namber) {
   console.log(result)
 }
 
-checkSpeed(300000000)
+compareLightSpeed(300000000)
 
 // 3. Создать переменную №1, которая содержит продукт и переменную №2, 
 // которая содержит его цену (на ваше усмотрение). Далее создаем функцию, которая принимает 1 параметр 
@@ -50,12 +50,12 @@ purchaseProduct(100)
 
 // 6. Создать 1 функцию и именовать её по своему усмотрению
 
-// function healthAssessment(pulse, bloodPressure) {
+function healthAssessment(pulse, bloodPressure) {
   
-// }
+}
 
 // 7. Создать 3 переменных (без разницы каких) и именовать их по своему усмотрению
 
-// let userName;
-// let age;
-// let iceCreamTaste;
+let userName;
+let age;
+let iceCreamTaste;
