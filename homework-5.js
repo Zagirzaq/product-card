@@ -2,11 +2,11 @@
 // город и температуру и выводит сообщение в консоль 
 // "Сейчас в X температура  — Y градусов по Цельсию"
 
-function weather(city = 'Симферополь', temp = -4) {
+function showWeather(city = 'Симферополь', temp = -4) {
   console.log(`Сейчас в ${city} температура  — ${temp} градусов по Цельсию`);
 }
 
-weather("Москве", -12)
+showWeather("Москве", -12)
 
 // 2. Создать переменную, которая хранит внутри себя скорость света (гуглим). 
 // Создать функцию, которая принимает 1 аргумент - скорость, 
@@ -14,12 +14,12 @@ weather("Москве", -12)
 // выводим лог "Сверхсветовая скорость", 
 // если ниже — "Субсветовая  скорость"? если равна — "Скорость света"
 
-const Light_Speed = 299792458;
+const LIGHT_SPEED = 299792458;
 let result;
-function speed(namber) {
-  if (namber > Light_Speed) {
+function checkSpeed(namber) {
+  if (namber > LIGHT_SPEED) {
     result = 'Сверхсветовая скорость';
-  } else if (namber < Light_Speed) {
+  } else if (namber < LIGHT_SPEED) {
     result = 'Субсветовая  скорость';
   } else {
     result = 'Скорость света';
@@ -27,7 +27,7 @@ function speed(namber) {
   console.log(result)
 }
 
-speed(300000000)
+checkSpeed(300000000)
 
 // 3. Создать переменную №1, которая содержит продукт и переменную №2, 
 // которая содержит его цену (на ваше усмотрение). Далее создаем функцию, которая принимает 1 параметр 
@@ -39,23 +39,23 @@ speed(300000000)
 const product = ('Чак-чак 0.2 кг');
 const price = (100);
 
-const purchase = balance  => {
+const purchaseProduct = balance  => {
   const priceDifference = price - balance;
   const result = balance >= price ? (`${product} приобретён. Спасибо за покупку!`) : (`Вам не хватает ${priceDifference}$, пополните баланс`);
   console.log(result);
 }
 
-purchase(99)
-purchase(100)
+purchaseProduct(99)
+purchaseProduct(100)
 
 // 6. Создать 1 функцию и именовать её по своему усмотрению
 
-function healthAssessment(pulse, bloodPressure) {
+// function healthAssessment(pulse, bloodPressure) {
   
-}
+// }
 
 // 7. Создать 3 переменных (без разницы каких) и именовать их по своему усмотрению
 
-let userName;
-let age;
-let iceCreamTaste;
+// let userName;
+// let age;
+// let iceCreamTaste;
