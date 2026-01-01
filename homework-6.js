@@ -20,7 +20,7 @@ const userProfile = {
 // значением которого будет ОБЪЕКТ, описанный в пункте №3. 
 // Желательно добавлять отдельной строкой (имеется ввиду не при создании объекта)
 
-const carInformation = {
+const car = {
   make: 'Ford',
   model: 'Focus',
   yearOfManufacture: 2014,
@@ -28,24 +28,24 @@ const carInformation = {
   transmissionType: 'Механическая',
 }
 
-carInformation.owner = { ...userProfile}
+car.owner = { ...userProfile}
 
-console.log(carInformation)
+console.log(car)
 
 // 5. Написать функцию которая аргументом будет принимать объект, описанный в пункте №4. 
 // Она проверяет, есть ли в объекте свойство "максимальная скорость", если нет 
 // - добавляет его и задает значение, если есть - прекращает выполнение (ничего не делает)
 
-function checkMaxSpeed(carInformation) {
-  if (Object.keys(carInformation) === 'MaxSpeed') {
-    return
+function checkMaxSpeed(car) {
+  if (!car.MaxSpeed) {
+    car.MaxSpeed = 140;
   } else {
-    carInformation.MaxSpeed = 140;
+    return
   }
 }
 
-checkMaxSpeed(carInformation)
-console.log(carInformation)
+checkMaxSpeed(car)
+console.log(car)
 
 // 6. Написать функцию, которая получает первым аргументом  — объект, 
 // а вторым аргументом — свойство объекта, которое нужно вывести и выводит его значение.
@@ -54,7 +54,7 @@ function outputValue(obj, value) {
   console.log(obj[value]);
 }
 
-outputValue(carInformation, 'make')
+outputValue(car, 'make')
 
 // 7. Создать массив, который содержит названия продуктов (просто строки)
 
@@ -144,7 +144,7 @@ allBooks.push({
   universe: 'Тестовая'
 });
 
-function addRareProperty(booksArray) {
+function addRarePropertyBook(booksArray) {
   return booksArray.map(function(book) {
     return {
       ...book,
@@ -153,6 +153,6 @@ function addRareProperty(booksArray) {
   });
 }
 
-const booksWithRareProperty = addRareProperty(allBooks);
+const booksWithRareProperty = addRarePropertyBook(allBooks);
 console.log(booksWithRareProperty);
 
