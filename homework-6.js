@@ -37,7 +37,7 @@ console.log(car)
 // - добавляет его и задает значение, если есть - прекращает выполнение (ничего не делает)
 
 function checkMaxSpeed(car) {
-  if (!car.MaxSpeed) {
+  if (car.MaxSpeed === undefined) {
     car.MaxSpeed = 140;
   } else {
     return
@@ -50,11 +50,11 @@ console.log(car)
 // 6. Написать функцию, которая получает первым аргументом  — объект, 
 // а вторым аргументом — свойство объекта, которое нужно вывести и выводит его значение.
 
-function outputValue(obj, value) {
+function outputObjectValue(obj, value) {
   console.log(obj[value]);
 }
 
-outputValue(car, 'make')
+outputObjectValue(car, 'make')
 
 // 7. Создать массив, который содержит названия продуктов (просто строки)
 
@@ -144,7 +144,7 @@ allBooks.push({
   universe: 'Тестовая'
 });
 
-function addRarePropertyBook(booksArray) {
+function markBooksAsRare(booksArray) {
   return booksArray.map(function(book) {
     return {
       ...book,
@@ -153,6 +153,6 @@ function addRarePropertyBook(booksArray) {
   });
 }
 
-const booksWithRareProperty = addRarePropertyBook(allBooks);
+const booksWithRareProperty = markBooksAsRare(allBooks);
 console.log(booksWithRareProperty);
 
