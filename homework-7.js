@@ -4,16 +4,16 @@
 
 import { socialMediaComments } from "./comments.js";
 
-let nambersSlaice;
-const nambers = [1,2,3,4,5,6,7,8,9,10];
-nambersSlaice = nambers.slice(0,5);
-console.log(nambersSlaice);
+
+const numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+const numbersFilter = numbers.filter(number => number >= 5);
+console.log(numbersFilter);
 
 // 3. Создать массив строк, относящихся к любой сущности 
 // (название фильмов/книг, кухонные приборы, мебель и т.д.), 
 // проверить, есть ли в массиве какая-то определенная сущность.
 
-const cutlery = ["Ложка","Вилка","Нож"];
+const cutlery = ["Ложка", "Вилка", "Нож"];
 const searchCutlery = cutlery.includes("Вилка");
 console.log(searchCutlery)
 
@@ -22,11 +22,11 @@ console.log(searchCutlery)
 // Два вышеуказанных массива с помощью этой функции перевернуть.
 
 function reverseArray (array) {
-  const result = [ ...array].reverse();
+  const result = [...array].reverse();
   return result;
 }
 
-console.log(reverseArray(nambers))
+console.log(reverseArray(numbers))
 console.log(reverseArray(cutlery))
 
 // Уровень 2:
@@ -47,15 +47,13 @@ console.log(commentsWithComEmail)
 // 8. Перебрать массив таким образом, что бы пользователи с id меньше или равно 5 имели postId: 2, 
 // а те, у кого id больше 5, имели postId: 1
 
-const updatedComments = socialMediaComments.map(updateid => {
-  return {...updateid, postId: updateid.id <= 5 ? 2 : 1}
-});
+const updatedComments = socialMediaComments.map(updateid => ({...updateid, postId: updateid.id <= 5 ? 2 : 1}));
 
 console.log(updatedComments)
 
 // 9. Перебрать массив, что бы объекты состояли только из айди и имени
 
-const commentIds = socialMediaComments.map(comment => ({id: comment.id, postId: comment.postId}));
+const commentIds = socialMediaComments.map(comment => ({id: comment.id, name: comment.name}));
 
 console.log(commentIds)
 
