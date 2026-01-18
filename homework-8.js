@@ -6,8 +6,8 @@ const allCardsContainer = document.querySelector('.all-cards-container');
 
 function createProductCard(productCard) {
   const productCardClone = productCardsTemplate.content.cloneNode(true);
-  productCardClone.querySelector('.product-img').src = `./images/${productCard.imageSrc}.png`;
-  productCardClone.querySelector('.product-img').alt = productCard.imageAlt;
+  productCardClone.querySelector('.product-img').src = `./images/${productCard.img}.png`;
+  productCardClone.querySelector('.product-img').alt = productCard.name;
   productCardClone.querySelector('.product-name').textContent = productCard.name
   productCardClone.querySelector('.product-description').textContent = productCard.description
   const compoundList = productCardClone.querySelector('.product-compound');
@@ -17,30 +17,37 @@ function createProductCard(productCard) {
     li.textContent = item;
     compoundList.appendChild(li);
   });
-  productCardClone.querySelector('.product-price').innerHTML = productCard.price
+  productCardClone.querySelector('.product-price').innerHTML = `${productCard.price} &#8381`
   return productCardClone;
 };
 
 const productDescription = productCards.reduce((acc, item) => {
-  return [...acc, { [item.name]: item.description }];
-}, []);
+  return [...acc, { [item.name]: item.description }];}, []);
 
 console.log(productDescription)
 
 
 function getNumberOfCards(value) {
   let result = prompt("Сколько карточек отобразить? От 1 до 5", " ")
-if (result === null) {
-  alert('Вы отказались от ввода')
-  return 5
-} else if (isNaN(result % 2)) {
-  alert('Ошибка, введено НЕ ЧИСЛО')
-} else if (result > 5 || result < 1) {
-  alert('Ненайдено')
-} else {
-  alert(`Будет отображено ${result} карточки`)
-  return result
-}
+  
+  const num = parseInt(result);
+  
+  if (result === null) {
+    alert('Вы отказались от ввода');
+    return 5
+  } 
+  else if (isNaN(num)) {
+    alert('Ошибка, введено НЕ ЧИСЛО');
+    return getNumberOfCards()
+  } 
+  else if (result > 5 || result < 1) {
+    alert('Число должно быть от 1 до 5');
+    return getNumberOfCards()
+  } 
+  else {
+    alert(`Будет отображено ${result} карточки`);
+    return result
+  }
 }
 
 

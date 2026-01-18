@@ -1,8 +1,7 @@
 export const productCards = [
   {
     id: 1,
-    imageSrc: "moist-mousse",
-    imageAlt: "Увлажняющий мусс",
+    img: "moist-mousse",
     name: "Увлажняющий мусс",
     description: "Глубоко увлажняют кожу лица, оставляя её мягкой и гладкой.",
     compound: [
@@ -10,21 +9,19 @@ export const productCards = [
       "витамины С, А, РР, В И Е",
       "солнцезащитные компоненты"
     ],
-    price: '2750 &#8381'
+    price: 2750
   },
   {
     id: 2,
-    imageSrc: "moist-mask",
-    imageAlt: "Увлажняющая маска",
+    img: "moist-mask",
     name: "Увлажняющая маска",
     description: "Способствует удерживанию влаги в верхних слоях кожи.",
     compound: ["воски", "минералы", "масла"],
-    price: '3500 &#8381'
+    price: 3500
   },
   {
     id: 3,
-    imageSrc: "cleansing-gel",
-    imageAlt: "Гель для умывания",
+    img: "cleansing-gel",
     name: "Гель для умывания",
     description: "Интенсивно очищает, не повреждает защитный барьер кожи.",
     compound: [
@@ -32,25 +29,23 @@ export const productCards = [
       "витамины С, А, РР, В И Е",
       "солнцезащитные компоненты"
     ],
-    price: '1650 &#8381'
+    price: 1650
   },
   {
     id: 4,
-    imageSrc: "gift-set-1",
-    imageAlt: "Подарочный набор №1",
+    img: "gift-set-1",
     name: "Подарочный набор №1",
     description: "Набор, состоящий из увлажняющего крема и маски.",
     compound: ["воски", "минералы", "масла"],
-    price: '4750 &#8381'
+    price: 4750
   },
   {
     id: 5,
-    imageSrc: "gift-set-5",
-    imageAlt: "Подарочный набор №5",
+    img: "gift-set-5",
     name: "Подарочный набор №5",
     description: "Весь набор средств Invisible symphony, крем, маска, мусс и гель для умывания.",
     compound: ["воски", "минералы", "масла"],
-    price: '7520 &#8381'
+    price: 7520
   }
 ];
 // &#8381
