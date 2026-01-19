@@ -28,25 +28,20 @@ console.log(productDescription)
 
 
 function getNumberOfCards(value) {
-  let result = prompt("Сколько карточек отобразить? От 1 до 5", " ")
-  
+  let result = prompt("Сколько карточек отобразить? От 1 до 5", " ");
   const num = parseInt(result);
-  
   if (result === null) {
     alert('Вы отказались от ввода');
-    return 5
-  } 
-  else if (isNaN(num)) {
+    return 5;
+  } else if (isNaN(num)) {
     alert('Ошибка, введено НЕ ЧИСЛО');
-    return getNumberOfCards()
-  } 
-  else if (result > 5 || result < 1) {
+    return getNumberOfCards();
+  } else if (result > 5 || result < 1) {
     alert('Число должно быть от 1 до 5');
-    return getNumberOfCards()
-  } 
-  else {
+    return getNumberOfCards();
+  } else {
     alert(`Будет отображено ${result} карточки`);
-    return result
+    return result;
   }
 }
 
