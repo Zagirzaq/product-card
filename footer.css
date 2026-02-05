@@ -3,11 +3,12 @@
   width: 1728px;
   height: 477px;
   box-sizing: border-box;
-  display: flex; 
+  display: flex;
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: center;
 }
+
 .footer-container {
   width: 1569px;
   height: 147px;
