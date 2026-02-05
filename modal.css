@@ -12,13 +12,11 @@
     left: 0;
 }
 
-/* Исправлена опечатка в селекторе */
-#openRegistration:hover {  /* Было #openRegistation :hover */
+#openRegistration:hover {
     background: #979292;
 }
 
-/* Исправлено: был #modal, нужно .modal */
-.modal {  /* ← исправлено с #modal */
+.modal {
     width: 100%;
     height: 100%;
     display: none;
@@ -31,8 +29,7 @@
     z-index: 999;
 }
 
-/* Исправлено: был #modal.active, нужно .modal.modal-showed */
-.modal.modal-showed {  /* ← исправлено */
+.modal.modal-showed {
     display: flex;
     pointer-events: auto;
 }
@@ -47,7 +44,6 @@
     flex-direction: column;
 }
 
-/* Дополнительные стили для формы */
 .form-group {
     margin-bottom: 15px;
 }
