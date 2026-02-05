@@ -5,17 +5,21 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Product Card</title>
   <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="footer.css">
+  <link rel="stylesheet" href="modal.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
 </head>
 <body>
+  <div class="overlay"></div>
   <div class="price-list">
     <button id="first-card-color">Сменить цвет первой карточки</button>
     <button id="all-cards-color">Сменить цвет всех карточек</button>
     <button id="open-google">Открыть Google</button>
     <button id="log-alert">Вывод консоль лог и алерт</button>    
     <button id="button-color">Нажми на меня и поменяй мой цвет</button>
+    <button id="openRegistration">Регистация</button>
     <h1 class="list-title">Выбери свой продукт</h1>
     <ul class="all-cards-container"></ul>
     <template id="product-cards-template">
@@ -35,12 +39,79 @@
         </div>
       </li>
     </template>
-    
-    <script src="main.js"></script>
-    <script src="homework-5.js"></script>
-    <script src="homework-6.js"></script>
-    <script type="module" src="homework-7.js"></script>
-    <script type="module" src="homework-8.js"></script>
   </div>
+  <footer class="footer">
+    <div class="footer-container">
+      <div class="footer_left">
+        <h1 class="footer_text_color">Product cards</h1>
+        <p class="footer_text_color footer_text_standard">У Нас Самые Лучшие Продукты Для Кожи!</p>
+        <div class="label">
+          <img src="./images/tg-icon.svg" alt="telegram icon" width="21" height="18">
+          <img src="./images/vk-icon.svg" alt="vk icon" width="24" height="14">
+        </div>
+      </div>
+      <div class="footer_form">
+        <form class="email-form">
+          <span class="footer_text_color">Подпишись на наши акции:</span>
+          <div class="footer_email">
+            <input type="email" placeholder="Введи Email..." name="email" required>
+            <div>|</div>
+            <button type="submit">Подписаться</button>
+          </div>
+        </form>
+      </div>
+      <nav class="footer_nav">
+        <h1 class="footer_text_color">Быстрые ссылки</h1>
+        <ul>
+          <li class="footer_nav_li"><a href="#" class="footer_text_color footer_text_standard">Главная</a></li>
+          <li class="footer_nav_li"><a href="#" class="footer_text_color footer_text_standard">Магазин</a></li>
+          <li><a href="#" class="footer_text_color footer_text_standard">Контакты</a></li>
+        </ul>
+      </nav>
+    </div>
+    <div class="footer_contact_email">
+      <hr width="66">
+      <span class="footer_text_color footer_text_standard">www.product-cards.com©all right reserve</span>
+    </div>
+  </footer>
+<div class="modal">
+    <div class="modal-content">
+        <span id="closeRegistration" class="close-btn">&times;</span>
+        <h2>Регистрация</h2>
+        <form id="registrationForm">
+            <div class="form-group">
+                <label for="userFirstName">Имя:</label>
+                <input type="text" id="userFirstName" name="userFirstName" placeholder="Введите имя" required>
+            </div>
+            <div class="form-group">
+                <label for="userLastName">Фамилия:</label>
+                <input type="text" id="userLastName" name="userLastName" placeholder="Введите фамилию" required>
+            </div>
+            <div class="form-group">
+                <label for="date">Дата рождения:</label>
+                <input type="date" id="date" name="date" required>
+            </div>
+            <div class="form-group">
+                <label for="Login">Логин:</label>
+                <input type="text" id="Login" name="Login" placeholder="Введите логин" required>
+            </div>
+            <div class="form-group">
+                <label for="password">Пароль:</label>
+                <input type="password" id="password" name="password" placeholder="Введите пароль" required>
+            </div>
+            <div class="form-group">
+                <label for="repetPassword">Повторите пароль:</label>
+                <input type="password" id="repetPassword" name="repetPassword" placeholder="Повторите пароль" required>
+            </div>
+            <button type="submit" class="submit-btn">Зарегистрироваться</button>
+        </form>
+    </div>
+</div>
+  <script type="module" src="homework-9.js"></script>
+  <script src="main.js"></script>
+  <script src="homework-5.js"></script>
+  <script src="homework-6.js"></script>
+  <script type="module" src="homework-7.js"></script>
+  <script type="module" src="homework-8.js"></script>
 </body>
 </html>
