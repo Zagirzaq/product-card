@@ -10,13 +10,13 @@ const getFormData = (form) => {
 
 const validateEmail = (email) => {
   const formatRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-  const hasValidDomain = email && email.includes('@') && (
-    email.includes('.com') || email.includes('.ru') ||
-    email.includes('.net') || email.includes('.org') ||
-    email.includes('.ua') || email.includes('.by') ||
-    email.includes('.kz')
-  );
-  return email && formatRegex.test(email) && hasValidDomain;
+  
+  if (!email || !formatRegex.test(email)) {
+    return false;
+  }
+  
+  const domainRegex = /\.(com|ru|net|org|ua|by|kz)$/;
+  return domainRegex.test(email);
 };
 
 const emailForm = document.querySelector(".email-form");
@@ -52,8 +52,8 @@ emailForm.addEventListener('submit', (event) => {
 // (используем сущность new Date()). Также создайте внешнюю переменную user и присвойте ей этот объект.
 // После успешной регистрации - модалка должны закрыться.
 
-const openModalBtn = document.getElementById("openRegistration"),
-      closeModalBtn = document.getElementById("closeRegistration"),
+const btnOpenModal = document.getElementById("openRegistration"),
+      btnCloseModal = document.getElementById("closeRegistration"),
       modal = document.querySelector(".modal"),
       overlay = document.querySelector(".overlay"),
       registrationForm = document.getElementById("registrationForm"),
@@ -71,11 +71,12 @@ const closeModal = () => {
   modal.classList.remove('modal-showed');
   overlay.classList.remove('active');
   body.classList.remove('modal-open');
+  
   if (registrationForm) registrationForm.reset();
 };
 
-openModalBtn.addEventListener('click', openModal);
-closeModalBtn.addEventListener('click', closeModal);
+btnOpenModal.addEventListener('click', openModal);
+btnCloseModal.addEventListener('click', closeModal);
 overlay.addEventListener('click', closeModal);
 
 document.addEventListener('keydown', (event) => {
@@ -89,16 +90,32 @@ if (registrationForm) {
     event.preventDefault();
     const form = event.target;
     
-    const password = form.password.value,
-          confirmPassword = form.repetPassword.value;
+    let isFormValid = true;
+    
+    const inputs = form.querySelectorAll('input[required]');
+    inputs.forEach(input => {
+      if (!input.checkValidity()) {
+        isFormValid = false;
+        input.setCustomValidity('Пожалуйста, заполните это поле корректно');
+      } else {
+        input.setCustomValidity('');
+      }
+    });
+    
+    const password = form.password.value;
+    const confirmPassword = form.repetPassword.value;
     
     if (password !== confirmPassword) {
-      alert('Пароли не совпадают. Пожалуйста, проверьте введенные данные.');
-      return;
+      form.repetPassword.setCustomValidity('Пароли не совпадают');
+      isFormValid = false;
+    } else {
+      form.repetPassword.setCustomValidity('');
     }
     
-    if (!form.checkValidity()) {
-      alert('Пожалуйста, заполните все обязательные поля корректно.');
+    if (!isFormValid) {
+      alert('Регистрация отклонена. Проверьте правильность заполнения полей.');
+      
+      form.reportValidity();
       return;
     }
     
