@@ -86,33 +86,30 @@ document.addEventListener('keydown', (event) => {
 });
 
 if (registrationForm) {
+  const passwordInput = registrationForm.querySelector('#password');
+  const confirmPasswordInput = registrationForm.querySelector('#repeatPassword');
+  
+  const validatePasswordMatch = () => {
+    if (passwordInput.value !== confirmPasswordInput.value) {
+      confirmPasswordInput.setCustomValidity('Пароли не совпадают');
+    } else {
+      confirmPasswordInput.setCustomValidity('');
+    }
+  };
+  
+  if (confirmPasswordInput) {
+    confirmPasswordInput.addEventListener('input', validatePasswordMatch);
+  }
+  
+  if (passwordInput) {
+    passwordInput.addEventListener('input', validatePasswordMatch);
+  }
+  
   registrationForm.addEventListener('submit', (event) => {
     event.preventDefault();
     const form = event.target;
     
-    let isFormValid = true;
-    
-    const inputs = form.querySelectorAll('input[required]');
-    inputs.forEach(input => {
-      if (!input.checkValidity()) {
-        isFormValid = false;
-        input.setCustomValidity('Пожалуйста, заполните это поле корректно');
-      } else {
-        input.setCustomValidity('');
-      }
-    });
-    
-    const password = form.password.value;
-    const confirmPassword = form.repetPassword.value;
-    
-    if (password !== confirmPassword) {
-      form.repetPassword.setCustomValidity('Пароли не совпадают');
-      isFormValid = false;
-    } else {
-      form.repetPassword.setCustomValidity('');
-    }
-    
-    if (!isFormValid) {
+    if (!form.checkValidity()) {
       alert('Регистрация отклонена. Проверьте правильность заполнения полей.');
       
       form.reportValidity();
