@@ -101,10 +101,6 @@ if (registrationForm) {
     confirmPasswordInput.addEventListener('input', validatePasswordMatch);
   }
   
-  if (passwordInput) {
-    passwordInput.addEventListener('input', validatePasswordMatch);
-  }
-  
   registrationForm.addEventListener('submit', (event) => {
     event.preventDefault();
     const form = event.target;
