@@ -6,4 +6,5 @@ import './homework-8.js';
 import './homework-9.js';
 import './CosmeticProduct.js';
 import './Modal.js';
-import'./Form.js';
+import './Form.js';
+import './Cafe.js';
