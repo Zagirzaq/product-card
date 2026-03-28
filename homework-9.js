@@ -1,4 +1,4 @@
-import { Modal } from './Modal.js';
+import { Modal } from './homework-12/Modal.js';
 import { Form } from './Form.js';
 
 const getFormData = (form) => {

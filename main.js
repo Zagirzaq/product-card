@@ -5,7 +5,7 @@ import './homework-7.js';
 import './homework-8.js';
 import './homework-9.js';
 import './CosmeticProduct.js';
-import './Modal.js';
+import './homework-12/Modal.js';
 import './Form.js';
 import { Tea } from "./Tea.js";
 import { Coffee } from "./Coffee.js";
