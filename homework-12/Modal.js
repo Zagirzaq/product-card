@@ -1,5 +1,5 @@
 export class Modal {
-  constructor(modalId) {
+  constructor(modalId, shouldCloseOnOverlay = true) {
     this.modal = document.getElementById(modalId);
     if (!this.modal) {
       console.error(`Модальное окно с id "${modalId}" не найдено`);
@@ -7,26 +7,33 @@ export class Modal {
     }
 
     this.overlay = document.querySelector('.overlay');
-    this.body = document.body;
     this.closeBtn = this.modal.querySelector('.close-btn');
+    this.shouldCloseOnOverlay = shouldCloseOnOverlay;
     this.closeModal = this.closeModal.bind(this);
   }
 
   open() {
     this.modal.classList.add('modal-showed');
-    if (this.overlay) this.overlay.classList.add('active');
-    this.body.classList.add('modal-open');
-    this.#initClose();
+    if (this.overlay) this.overlay.classList.add('overlay-showed');
+
+    if (this.closeBtn) {
+      this.closeBtn.removeEventListener('click', this.closeModal);
+      this.closeBtn.addEventListener('click', this.closeModal);
+    }
+
+    if (this.shouldCloseOnOverlay && this.overlay) {
+      this.overlay.removeEventListener('click', this.closeModal);
+      this.overlay.addEventListener('click', this.closeModal);
+    }
   }
 
   close() {
     this.modal.classList.remove('modal-showed');
-    if (this.overlay) this.overlay.classList.remove('active');
-    this.body.classList.remove('modal-open');
+    if (this.overlay) this.overlay.classList.remove('overlay-showed');
     if (this.closeBtn) {
       this.closeBtn.removeEventListener('click', this.closeModal);
     }
-    if (this.overlay) {
+    if (this.shouldCloseOnOverlay && this.overlay) {
       this.overlay.removeEventListener('click', this.closeModal);
     }
   }
@@ -37,17 +44,5 @@ export class Modal {
 
   closeModal() {
     this.close();
-  }
-
-  #initClose() {
-    if (this.closeBtn) {
-      this.closeBtn.removeEventListener('click', this.closeModal);
-      this.closeBtn.addEventListener('click', this.closeModal);
-    }
-    
-    if (this.overlay) {
-      this.overlay.removeEventListener('click', this.closeModal);
-      this.overlay.addEventListener('click', this.closeModal);
-    }
   }
 }
