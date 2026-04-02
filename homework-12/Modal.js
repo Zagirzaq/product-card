@@ -14,8 +14,14 @@ export class Modal {
 
   open() {
     this.modal.classList.add('modal-showed');
-    if (this.overlay) this.overlay.classList.add('overlay-showed');
-
+    if (this.overlay) {
+      this.overlay.classList.add('overlay-showed');
+    }
+    
+    if (this.overlay) {
+      this.overlay.classList.add('active');
+    }
+    
     if (this.closeBtn) {
       this.closeBtn.removeEventListener('click', this.closeModal);
       this.closeBtn.addEventListener('click', this.closeModal);
@@ -29,10 +35,18 @@ export class Modal {
 
   close() {
     this.modal.classList.remove('modal-showed');
-    if (this.overlay) this.overlay.classList.remove('overlay-showed');
+    if (this.overlay) {
+      this.overlay.classList.remove('overlay-showed');
+    }
+    
+    if (this.overlay) {
+      this.overlay.classList.remove('active');
+    }
+    
     if (this.closeBtn) {
       this.closeBtn.removeEventListener('click', this.closeModal);
     }
+    
     if (this.shouldCloseOnOverlay && this.overlay) {
       this.overlay.removeEventListener('click', this.closeModal);
     }
