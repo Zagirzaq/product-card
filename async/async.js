@@ -1,4 +1,5 @@
-const STORAGE_KEY = 'users';
+const USERS_STORAGE_KEY = 'users';
+const userCardTemplate = document.getElementById('user-card-template');
 
 const container = document.getElementById('usersContainer');
 const statusDiv = document.getElementById('statusMessage');
@@ -12,17 +13,19 @@ function setStatus(text, isError = false) {
   statusDiv.style.color = isError ? 'red' : 'black';
 }
 
-function renderUsers(usersArray) {
-  const template = document.getElementById('user-card-template');
-  container.innerHTML = '';
+function showTemporaryStatus(text, isError = false) {
+  setStatus(text, isError);
+  setTimeout(() => setStatus(''), 1500);
+}
 
+function renderUsers(usersArray) {
+  container.innerHTML = '';
   if (!usersArray.length) {
     setStatus('Нет пользователей для отображения');
     return;
   }
-
   usersArray.forEach(user => {
-    const clone = template.content.cloneNode(true);
+    const clone = userCardTemplate.content.cloneNode(true);
     clone.querySelector('.user-name').textContent = `${user.name} ${user.surname}`;
     clone.querySelector('.user-email').textContent = `Email: ${user.email}`;
     clone.querySelector('.user-age').textContent = `Возраст: ${user.age}`;
@@ -35,38 +38,24 @@ function renderUsers(usersArray) {
 }
 
 function loadFromLocalStorage() {
-  const stored = localStorage.getItem(STORAGE_KEY);
-  if (stored) {
-    try {
-      currentUsers = JSON.parse(stored);
-      renderUsers(currentUsers);
-      return true;
-    } catch (e) {
-      console.error('Ошибка парсинга localStorage', e);
-      return false;
-    }
+  const rawData = localStorage.getItem(USERS_STORAGE_KEY);
+  if (rawData) {
+    const users = JSON.parse(rawData);
+    currentUsers = users;
+    renderUsers(currentUsers);
+    return true;
   }
   return false;
 }
 
 function saveToLocalStorage(usersArray) {
-  localStorage.setItem(STORAGE_KEY, JSON.stringify(usersArray));
-  currentUsers = usersArray;
-  renderUsers(currentUsers);
+  localStorage.setItem(USERS_STORAGE_KEY, JSON.stringify(usersArray));
 }
 
-function fetchUsersWithDelay() {
-  return new Promise((resolve, reject) => {
-    setTimeout(() => {
-      fetch('users.json')
-        .then(response => {
-          if (!response.ok) throw new Error('Сеть ответила с ошибкой');
-          return response.json();
-        })
-        .then(data => resolve(data))
-        .catch(err => reject(err));
-    }, 1500);
-  });
+async function fetchUsers() {
+  const response = await fetch('users.json');
+  if (!response.ok) throw new Error('Сеть ответила с ошибкой');
+  return response.json();
 }
 
 async function init() {
@@ -75,9 +64,13 @@ async function init() {
 
   setStatus('Данные загружаются...');
   try {
-    const users = await fetchUsersWithDelay();
-    saveToLocalStorage(users);
-    setStatus('');
+    const users = await fetchUsers();
+    setTimeout(() => {
+      saveToLocalStorage(users);
+      currentUsers = users;
+      renderUsers(currentUsers);
+      setStatus('');
+    }, 1500);
   } catch (error) {
     console.error(error);
     setStatus('Ошибка при загрузке данных', true);
@@ -88,46 +81,43 @@ async function init() {
 function deleteUserById(id) {
   const newUsers = currentUsers.filter(user => user.id !== id);
   if (newUsers.length === currentUsers.length) {
-    setStatus('Пользователь не найден', true);
-    setTimeout(() => setStatus(''), 1500);
+    showTemporaryStatus('Пользователь не найден', true);
     return;
   }
   saveToLocalStorage(newUsers);
-  setStatus(`Пользователь с id ${id} удалён`);
-  setTimeout(() => setStatus(''), 1500);
+  currentUsers = newUsers;
+  renderUsers(currentUsers);
+  showTemporaryStatus(`Пользователь с id ${id} удалён`);
 }
 
 function deleteAllUsers() {
   if (currentUsers.length === 0) {
-    setStatus('Нет пользователей для удаления', true);
-    setTimeout(() => setStatus(''), 1500);
+    showTemporaryStatus('Нет пользователей для удаления', true);
     return;
   }
   saveToLocalStorage([]);
-  setStatus('Все пользователи удалены');
-  setTimeout(() => setStatus(''), 1500);
+  currentUsers = [];
+  renderUsers(currentUsers);
+  showTemporaryStatus('Все пользователи удалены');
 }
 
 function showAllUsers() {
-  const stored = localStorage.getItem(STORAGE_KEY);
-  if (!stored) {
-    setStatus('Нет данных в хранилище', true);
+  const rawData = localStorage.getItem(USERS_STORAGE_KEY);
+  if (!rawData) {
+    showTemporaryStatus('Нет данных в хранилище', true);
     return;
   }
-  const allUsers = JSON.parse(stored);
+  const allUsers = JSON.parse(rawData);
   if (allUsers.length === currentUsers.length) {
-    setStatus('Все пользователи уже отображены');
-    setTimeout(() => setStatus(''), 1500);
+    showTemporaryStatus('Все пользователи уже отображены');
   } else {
-    saveToLocalStorage(allUsers);
-    setStatus('Отображены все пользователи');
-    setTimeout(() => setStatus(''), 1500);
+    currentUsers = allUsers;
+    renderUsers(currentUsers);
+    showTemporaryStatus('Отображены все пользователи');
   }
 }
 
 showAllBtn.addEventListener('click', showAllUsers);
 deleteAllBtn.addEventListener('click', deleteAllUsers);
 
-init();
-
-localStorage.clear()
+window.addEventListener('load', init);
