@@ -7,7 +7,6 @@ const deleteAllBtn = document.getElementById('deleteAllBtn');
 
 let currentUsers = [];
 
-// Установка статуса (опционально с автоочисткой через duration мс)
 function setStatus(text, isError = false, duration = 0) {
   statusDiv.textContent = text;
   statusDiv.style.color = isError ? 'red' : 'black';
@@ -20,22 +19,18 @@ function setStatus(text, isError = false, duration = 0) {
   }
 }
 
-// Получаем данные из localStorage (всегда массив, без try/catch)
 function getDataFromLocalStorage(key) {
   const rawData = localStorage.getItem(key);
-  if (!rawData) return [];
-  return JSON.parse(rawData) ?? [];   // Если вдруг null после parse
+  return JSON.parse(rawData || '[]');
 }
 
-// Чистое сохранение в localStorage
 function saveToLocalStorage(key, data) {
   localStorage.setItem(key, JSON.stringify(data));
 }
 
-// Рендер карточек
 function renderUsers(users) {
   container.innerHTML = '';
-  if (users.length === 0) {
+  if (!users.length) {
     setStatus('Нет пользователей для отображения', false, 2000);
     return;
   }
@@ -49,10 +44,9 @@ function renderUsers(users) {
     deleteBtn.addEventListener('click', () => deleteUserById(user.id));
     container.appendChild(clone);
   });
-  statusDiv.textContent = ''; // сброс статуса после успешного рендера
+  statusDiv.textContent = '';
 }
 
-// Удаление одной карточки
 function deleteUserById(id) {
   const newUsers = currentUsers.filter(user => user.id !== id);
   if (newUsers.length === currentUsers.length) {
@@ -65,9 +59,8 @@ function deleteUserById(id) {
   setStatus(`Пользователь с id ${id} удалён`, false, 1500);
 }
 
-// Удаление всех
 function deleteAllUsers() {
-  if (currentUsers.length === 0) {
+  if (!currentUsers.length) {
     setStatus('Нет пользователей для удаления', true, 1500);
     return;
   }
@@ -77,10 +70,9 @@ function deleteAllUsers() {
   setStatus('Все пользователи удалены', false, 1500);
 }
 
-// Показать всех из хранилища
 function showAllUsers() {
   const allUsers = getDataFromLocalStorage(USERS_KEY);
-  if (allUsers.length === 0) {
+  if (!allUsers.length) {
     setStatus('Нет данных в хранилище', true, 1500);
     return;
   }
@@ -93,7 +85,6 @@ function showAllUsers() {
   setStatus('Отображены все пользователи', false, 1500);
 }
 
-// Запрос к серверу (без искусственной задержки)
 async function fetchUsers() {
   const response = await fetch('users.json');
   if (!response.ok) {
@@ -102,11 +93,10 @@ async function fetchUsers() {
   return response.json();
 }
 
-// Инициализация
 async function init() {
-  const stored = getDataFromLocalStorage(USERS_KEY);
-  if (stored.length > 0) {
-    currentUsers = stored;
+  const localStorageData = getDataFromLocalStorage(USERS_KEY);
+  if (localStorageData.length) {
+    currentUsers = localStorageData;
     renderUsers(currentUsers);
     return;
   }
@@ -114,7 +104,6 @@ async function init() {
   setStatus('Данные загружаются...');
   try {
     const users = await fetchUsers();
-    // Искусственная задержка 1.5 секунды перед рендером (имитация долгой загрузки)
     setTimeout(() => {
       saveToLocalStorage(USERS_KEY, users);
       currentUsers = users;
@@ -127,9 +116,7 @@ async function init() {
   }
 }
 
-// Запуск после полной загрузки страницы
 window.addEventListener('load', init);
 
-// Обработчики кнопок
 showAllBtn.addEventListener('click', showAllUsers);
 deleteAllBtn.addEventListener('click', deleteAllUsers);
