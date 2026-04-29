@@ -21,7 +21,7 @@ function setStatus(text, isError = false, duration = 0) {
 
 function getDataFromLocalStorage(key) {
   const rawData = localStorage.getItem(key);
-  return JSON.parse(rawData || '[]');
+  return JSON.parse(rawData) ?? [];
 }
 
 function saveToLocalStorage(key, data) {
