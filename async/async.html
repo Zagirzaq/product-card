@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Асинхронные пользователи</title>
+  <link rel="stylesheet" href="async.css">
+</head>
+<body>
+  <div class="container">
+    <div class="controls">
+      <button id="showAllBtn">Показать всех</button>
+      <button id="deleteAllBtn">Удалить всех</button>
+    </div>
+    <div id="statusMessage" class="status-message"></div>
+    <ul id="usersContainer" class="users-container"></ul>
+  </div>
+
+  <template id="user-card-template">
+    <li>
+      <div class="user-card">
+        <h3 class="user-name"></h3>
+        <p class="user-email"></p>
+        <p class="user-age"></p>
+        <button class="delete-user-btn">Удалить</button>
+      </div>
+    </li>
+  </template>
+
+  <script type="module" src="async.js"></script>
+</body>
+</html>

@@ -1,0 +1,37 @@
+[
+  {
+    "id": 1,
+    "name": "Alisa",
+    "surname": "Kapustina",
+    "email": "aliskaput@mail.ru",
+    "age": 16
+  },
+  {
+    "id": 2,
+    "name": "Ivan",
+    "surname": "Ivanov",
+    "email": "ivivan@gmail.com",
+    "age": 22
+  },
+  {
+    "id": 3,
+    "name": "Alesha",
+    "surname": "Bogatir",
+    "email": "rus@mail.ru",
+    "age": 1000
+  },
+  {
+    "id": 4,
+    "name": "Elf",
+    "surname": "Dolgogivushii",
+    "email": "druid@mail.ru",
+    "age": 2000
+  },
+  {
+    "id": 5,
+    "name": "Kamen",
+    "surname": "Xarlamov",
+    "email": "kamen_died@mail.ru",
+    "age": 1000000000000000000
+  }
+]
